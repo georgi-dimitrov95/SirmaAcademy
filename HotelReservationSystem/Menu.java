@@ -9,4 +9,12 @@ public class Menu {
         System.out.println(welcome);
         System.out.println("=".repeat(welcome.length()));
     }
+
+    public static void loginAndRegisterMenu() {
+        System.out.println("Before interacting with the system you must either register an account and/or log in.");
+        System.out.println("Please choose one of the following options:");
+        System.out.println("1. Register as a Customer.");
+        System.out.println("2. Log in as a Customer.");
+        System.out.println("3. Log in as an Admin.");
+    }
 }
