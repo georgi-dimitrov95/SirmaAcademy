@@ -17,4 +17,12 @@ public class Menu {
         System.out.println("2. Log in as a Customer.");
         System.out.println("3. Log in as an Admin.");
     }
+
+    public static void customerMainMenu() {
+        System.out.println("Please choose one of the following options:");
+        System.out.println("1. View available rooms.");
+        System.out.println("2. Book a room.");
+        System.out.println("3. Cancel booking.");
+        System.out.println("4. View profile.");
+    }
 }
