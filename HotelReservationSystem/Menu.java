@@ -25,4 +25,18 @@ public class Menu {
         System.out.println("3. Cancel booking.");
         System.out.println("4. View profile.");
     }
+
+//    TODO customer profile viewer
+
+    public static void adminMainMenu() {
+        System.out.println("Please choose one of the following options:");
+        System.out.println("1. View all bookings & cancellations.");
+        System.out.println("2. View total income & cancellation fees.");
+        System.out.println("3. Add a new room type.");
+        System.out.println("4. Delete a room type.");
+        System.out.println("5. Add a room.");
+        System.out.println("6. Delete a room.");
+        System.out.println("7. Modify room details.");
+        System.out.println("8. Modify hotel info.");
+    }
 }
