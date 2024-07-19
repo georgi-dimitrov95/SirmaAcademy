@@ -7,6 +7,11 @@ public class ReservationSystem {
     ArrayList<Hotel> hotels;
     ArrayList<User> users;
 
+    public ReservationSystem() {
+        this.hotels = new ArrayList<>();
+        this.users = new ArrayList<>();
+    }
+
     public ArrayList<User> getUsers() {
         return users;
     }
