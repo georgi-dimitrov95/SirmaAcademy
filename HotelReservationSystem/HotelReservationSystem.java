@@ -38,5 +38,10 @@ public class HotelReservationSystem {
             }
         }
     }
+
+//    validate user password
+    public boolean validatePassword(String password) {
+        return password.matches("^[a-zA-Z0-9]{6}$");
+    }
 }
 
