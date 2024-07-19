@@ -17,12 +17,9 @@ public class HotelReservationSystem {
             switch (loginResponse) {
                 case "1":
                     while (true) {
-//                        prompt for registration info
                         System.out.println("Please specify a name and a password for your account.");
                         System.out.println("Name: ");
                         String name = scanner.nextLine().trim();
-                        System.out.println("Password: ");
-                        String password = scanner.nextLine().trim();
 
 //                        check if username is unique
                         if (reservationSystem.userNameExists(name)) {
@@ -30,7 +27,10 @@ public class HotelReservationSystem {
                             continue;
                         }
 
-//                        validates the user password
+                        System.out.println("Password: ");
+                        String password = scanner.nextLine().trim();
+
+//                        validate the user password
                         if (!validatePassword(password)) {
                             System.out.println("The password must be at least 6 characters in length and contain at least one uppercase letter as well as at least one digit.");
                             continue;
