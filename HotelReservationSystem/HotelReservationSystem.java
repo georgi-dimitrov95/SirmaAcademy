@@ -32,10 +32,11 @@ public class HotelReservationSystem {
 
 //                        validates the user password
                         if (!validatePassword(password)) {
+                            System.out.println("The password must be at least 6 characters in length and contain at least one uppercase letter as well as at least one digit.");
                             continue;
                         }
 
-                        User newUser = new User();
+                        User newUser = new User(name, password);
                         break;
                     }
                     break;
