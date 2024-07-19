@@ -12,10 +12,17 @@ public class HotelReservationSystem {
         while (mainLoop) {
             Menu.loginAndRegisterMenu();
             String loginResponse = scanner.nextLine().trim();
-//
+
             switch (loginResponse) {
                 case "1":
-//                    register a customer
+//                    prompt for registration info
+                    System.out.println("Please specify a name and a password for your account.");
+                    System.out.println("Name: ");
+                    String name = scanner.nextLine().trim();
+                    System.out.println("Password: ");
+                    String password = scanner.nextLine().trim();
+
+//                    check if username is unique and validate password
 
                     break;
                 case "2":
@@ -32,3 +39,4 @@ public class HotelReservationSystem {
         }
     }
 }
+
