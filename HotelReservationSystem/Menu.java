@@ -3,7 +3,8 @@ package HotelReservationSystem;
 public class Menu {
 
 //    greets the user upon starting the program
-    public static void GreetingMenu() {
+    public static void greetingMenu() {
+        System.out.println();
         String welcome = "Welcome to the Hotel Reservation System!";
         System.out.println("=".repeat(welcome.length()));
         System.out.println(welcome);
@@ -12,6 +13,7 @@ public class Menu {
     }
 
     public static void loginAndRegisterMenu() {
+        System.out.println();
         System.out.println("Please choose one of the following options:");
         System.out.println("1. Register as a Customer.");
         System.out.println("2. Log in as a Customer.");
