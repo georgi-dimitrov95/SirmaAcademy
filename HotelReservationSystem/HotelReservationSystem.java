@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class HotelReservationSystem {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        ReservationSystem reservationSystem = new ReservationSystem();
         Menu.greetingMenu();
 
 //        main loop of the program
@@ -15,15 +16,28 @@ public class HotelReservationSystem {
 
             switch (loginResponse) {
                 case "1":
-//                    prompt for registration info
-                    System.out.println("Please specify a name and a password for your account.");
-                    System.out.println("Name: ");
-                    String name = scanner.nextLine().trim();
-                    System.out.println("Password: ");
-                    String password = scanner.nextLine().trim();
+                    while (true) {
+//                        prompt for registration info
+                        System.out.println("Please specify a name and a password for your account.");
+                        System.out.println("Name: ");
+                        String name = scanner.nextLine().trim();
+                        System.out.println("Password: ");
+                        String password = scanner.nextLine().trim();
 
-//                    check if username is unique and validate password
+//                        check if username is unique
+                        if (reservationSystem.userNameExists(name)) {
+                            System.out.println("The username already exists. Please try another one.");
+                            continue;
+                        }
 
+//                        validates the user password
+                        if (!validatePassword(password)) {
+                            continue;
+                        }
+
+                        User newUser = new User();
+                        break;
+                    }
                     break;
                 case "2":
 //                    login customer
@@ -39,8 +53,8 @@ public class HotelReservationSystem {
         }
     }
 
-//    validate user password
-    public boolean validatePassword(String password) {
+    //    validate user password
+    public static boolean validatePassword(String password) {
         return password.matches("^[a-zA-Z0-9]{6}$");
     }
 }
