@@ -7,6 +7,12 @@ public class User {
     String password;
     ArrayList<String> bookingHistory;
 
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+        this.bookingHistory = new ArrayList<>();
+    }
+
     public String getName() {
         return name;
     }
