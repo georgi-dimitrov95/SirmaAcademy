@@ -21,7 +21,7 @@ public class HotelReservationSystem {
                         System.out.println("Name: ");
                         String name = scanner.nextLine().trim();
 
-//                        check if username is unique
+//                        check if username is not already taken
                         if (reservationSystem.userNameExists(name)) {
                             System.out.println("The username already exists. Please try another one.");
                             continue;
