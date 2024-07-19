@@ -36,7 +36,10 @@ public class HotelReservationSystem {
                             continue;
                         }
 
+//                        if we're here then the registration process is successful, so we create the user and add it to the reservation system
                         User newUser = new User(name, password);
+                        reservationSystem.addUser(newUser);
+                        System.out.println("You have successfully registered in our system! Now you can log in your account.");
                         break;
                     }
                     break;
