@@ -1,6 +1,7 @@
 package HotelReservationSystem;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ReservationSystem {
     ArrayList<Hotel> hotels;
@@ -32,5 +33,15 @@ public class ReservationSystem {
 
     public void deleteHotel(Hotel hotel) {
         hotels.remove(hotel);
+    }
+
+//    checks if a string matches a username from the Users list
+    public boolean userNameExists(String userName) {
+        for (User user : users) {
+            if (Objects.equals(userName, user.getName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
