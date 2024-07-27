@@ -3,9 +3,7 @@ package com.example.library.MVC.exercise.service;
 import com.example.library.MVC.exercise.model.Book;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -26,5 +24,15 @@ public class CsvService {
             System.out.println("Something went wrong during the CSV reading process.");
         }
         return books;
+    }
+
+    public void saveBook(Book book) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKS_FILE))) {
+            String line = book.getTitle() + "," + book.getGenre() + "," + book.getAuthor() + "," + book.getYear() + "," + book.getPages();
+            writer.write(line);
+            writer.newLine();
+        } catch (IOException e) {
+            System.out.println("Something went wrong during the CSV writing process");
+        }
     }
 }
