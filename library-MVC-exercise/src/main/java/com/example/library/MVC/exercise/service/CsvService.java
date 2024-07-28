@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Service
 public class CsvService {
-    private static final String BOOKS_FILE = "src/main/resources/books.csv";
+    public static final String BOOKS_FILE = "src/main/resources/books.csv";
 
     public Book searchBookByName(String title) {
         ArrayList<Book> books = readAllBooks();
