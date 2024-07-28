@@ -37,7 +37,7 @@ public class CsvService {
     }
 
     public void saveBook(Book book) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKS_FILE))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKS_FILE, true))) {
             String line = book.getTitle() + "," + book.getGenre() + "," + book.getAuthor() + "," + book.getYear() + "," + book.getPages();
             writer.write(line);
             writer.newLine();
