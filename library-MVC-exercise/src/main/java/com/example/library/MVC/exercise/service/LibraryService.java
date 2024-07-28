@@ -14,5 +14,9 @@ public class LibraryService {
         return csvService.readAllBooks();
     }
 
+    public void addBook(Book book) {
+        csvService.saveBook(book);
+    }
 
+    
 }
