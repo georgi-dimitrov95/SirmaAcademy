@@ -18,5 +18,12 @@ public class LibraryService {
         csvService.saveBook(book);
     }
 
-    
+    public void removeBook(String title) {
+        Book book = csvService.searchBookByName(title);
+        if (book != null) {
+            ArrayList<Book> books = csvService.readAllBooks();
+            books.remove(book);
+            csvService.saveAllBooks(books);
+        }
+    }
 }
