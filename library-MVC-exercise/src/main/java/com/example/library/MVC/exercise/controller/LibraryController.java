@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LibraryController {
     @Autowired
-    private LibraryService libraryService;
+    public LibraryService libraryService;
 
     @GetMapping("/books")
     public String viewAllBooks(Model model) {
