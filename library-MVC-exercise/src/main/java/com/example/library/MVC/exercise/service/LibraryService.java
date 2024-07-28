@@ -8,7 +8,7 @@ import java.util.ArrayList;
 @Service
 public class LibraryService {
     @Autowired
-    private CsvService csvService;
+    public CsvService csvService;
 
     public ArrayList<Book> getAllBooks() {
         return csvService.readAllBooks();
