@@ -9,12 +9,20 @@
 </head>
 <body>
     <h1>Books</h1>
+    <form th:action="@{/books}" th:object="${book}" method="post">
+        <label>Title: <input type="text" th:field="*{title}"></label>
+        <label>Genre: <input type="text" th:field="*{genre}"></label>
+        <label>Author: <input type="text" th:field="*{author}"></label>
+        <label>Year: <input type="text" th:field="*{year}"></label>
+        <label>Pages: <input type="text" th:field="*{pages}"></label>
+    </form>
+
     <h2>Book list</h2>
     <li th:each="book: ${books}">
         <span th:text="${book.title}">Title</span> -
         <span th:text="${book.genre}">Genre</span> -
         <span th:text="${book.author}">Author</span> -
-        <span th:text="${book.year}">Year</span> - 
+        <span th:text="${book.year}">Year</span> -
         <span th:text="${book.pages}">Pages</span>
     </li>
 </body>
