@@ -45,4 +45,10 @@ public class CsvService {
             System.out.println("Something went wrong during the CSV writing process");
         }
     }
+
+    public void saveAllBooks(ArrayList<Book> books) {
+        for (Book book : books) {
+            saveBook(book);
+        }
+    }
 }
