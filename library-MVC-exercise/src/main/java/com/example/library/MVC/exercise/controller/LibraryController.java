@@ -11,4 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LibraryController {
     @Autowired
     private LibraryService libraryService;
+
+    @GetMapping("/books")
+    public String viewAllBooks(Model model) {
+        model.addAttribute("books", libraryService.getAllBooks());
+        return "books";
+    }
 }
