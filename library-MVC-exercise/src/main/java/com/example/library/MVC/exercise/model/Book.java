@@ -1,14 +1,14 @@
 package com.example.library.MVC.exercise.model;
 
 public class Book {
-    private String name;
+    private String title;
     private String genre;
     private String author;
     int year;
     int pages;
 
-    public Book(String name, String genre, String author, int year, int pages) {
-        this.name = name;
+    public Book(String title, String genre, String author, int year, int pages) {
+        this.title = title;
         this.genre = genre;
         this.author = author;
         this.year = year;
@@ -19,12 +19,12 @@ public class Book {
 
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getGenre() {
