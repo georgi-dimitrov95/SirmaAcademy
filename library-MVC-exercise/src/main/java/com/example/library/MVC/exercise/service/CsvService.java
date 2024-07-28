@@ -4,12 +4,22 @@ import com.example.library.MVC.exercise.model.Book;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Objects;
 
 @Service
 public class CsvService {
     private static final String BOOKS_FILE = "src/main/resources/books.csv";
+
+    public Book searchBookByName(String title) {
+        ArrayList<Book> books = readAllBooks();
+        for(Book book : books) {
+            if (Objects.equals(title, book.getTitle())) {
+                return book;
+            }
+        }
+        return null;
+    }
 
     public ArrayList<Book> readAllBooks() {
         ArrayList<Book> books = new ArrayList<>();
