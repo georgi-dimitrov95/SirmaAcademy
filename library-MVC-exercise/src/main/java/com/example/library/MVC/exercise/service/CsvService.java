@@ -11,10 +11,16 @@ import java.util.Objects;
 public class CsvService {
     public static final String BOOKS_FILE = "src/main/resources/books.csv";
 
+//    creating a private field ArrayList<Book> = new ArrayList might fix the problem from libraryService.removeBook()
+//    where the problem occurs because the addresses of #1 books and #2 books are not the same (they are different objets in memory, despite having the same contents)
+
     public Book searchBookByName(String title) {
+//        #1 books (every time readAllBooks is called, it returns a new ArrayList in memory)
         ArrayList<Book> books = readAllBooks();
+//        System.out.println("readAllBooks call in searchName: " + books);
         for(Book book : books) {
             if (Objects.equals(title, book.getTitle())) {
+//                System.out.println("searchName: " + book);
                 return book;
             }
         }
@@ -36,6 +42,7 @@ public class CsvService {
         return books;
     }
 
+//    appends a book to the csv without overwriting the file's contents
     public void saveBook(Book book) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKS_FILE, true))) {
             String line = book.getTitle() + "," + book.getGenre() + "," + book.getAuthor() + "," + book.getYear() + "," + book.getPages();
@@ -46,9 +53,17 @@ public class CsvService {
         }
     }
 
+//    overwrites the file's contents with the list of books generated in this method
     public void saveAllBooks(ArrayList<Book> books) {
-        for (Book book : books) {
-            saveBook(book);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKS_FILE))) {
+            for (Book book : books) {
+                String line = book.getTitle() + "," + book.getGenre() + "," + book.getAuthor() + "," + book.getYear() + "," + book.getPages();
+                writer.write(line);
+                writer.write("9");
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Something went wrong during the CSV writing process");
         }
     }
 }
