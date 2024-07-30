@@ -8,14 +8,20 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Books</h1>
+    <h1>Add a book</h1>
     <form th:action="@{/books}" th:object="${book}" method="post">
         <label>Title: <input type="text" th:field="*{title}"></label>
         <label>Genre: <input type="text" th:field="*{genre}"></label>
         <label>Author: <input type="text" th:field="*{author}"></label>
         <label>Year: <input type="text" th:field="*{year}"></label>
         <label>Pages: <input type="text" th:field="*{pages}"></label>
-        <button type="submit">Add book</button>
+        <input type="submit" name="addBook" value="Add">
+    </form>
+
+    <h1>Delete a book</h1>
+    <form th:action="@{/books}" method="post">
+        <label>Title: <input type="text" th:value="${bookTitle}" name="bookTitle"></label>
+        <input type="submit" name="deleteBookByTitle" value="Delete">
     </form>
 
     <h2>Book list</h2>
