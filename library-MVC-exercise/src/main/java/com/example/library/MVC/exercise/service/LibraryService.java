@@ -21,7 +21,11 @@ public class LibraryService {
     public void removeBook(String title) {
         Book book = csvService.searchBookByName(title);
         if (book != null) {
+            System.out.println("removeBook: " + book);
+//            #2 books
             ArrayList<Book> books = csvService.readAllBooks();
+//            System.out.println("Books from removeBook:" + books);
+//            the problem is in the line below
             books.remove(book);
             csvService.saveAllBooks(books);
         }
