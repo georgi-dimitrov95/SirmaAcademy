@@ -1,5 +1,7 @@
 package com.example.library.MVC.exercise.model;
 
+import java.util.Objects;
+
 public class Book {
     private String title;
     private String genre;
@@ -57,5 +59,17 @@ public class Book {
 
     public void setPages(int pages) {
         this.pages = pages;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return year == book.year &&
+                pages == book.pages &&
+                Objects.equals(title, book.title) &&
+                Objects.equals(genre, book.genre) &&
+                Objects.equals(author, book.author);
     }
 }
