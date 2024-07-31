@@ -16,7 +16,7 @@ public class ShowRepository {
     }
 
     public void saveShowToDatabase(Show show) {
-        String sql = "INSERT INTO shows (title, year, episodes) VALUSE (?, ?, ?)";
+        String sql = "INSERT INTO shows (title, year, episodes) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, show.getTitle(), show.getYear(), show.getEpisodes());
     }
 }
