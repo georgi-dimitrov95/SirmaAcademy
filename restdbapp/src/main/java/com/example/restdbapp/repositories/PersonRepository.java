@@ -16,7 +16,7 @@ public class PersonRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void saveUserInDatabase(Person person) {
+    public void savePersonInDatabase(Person person) {
         String sql = "INSERT INTO people (name, age) VALUES (?, ?)";
         jdbcTemplate.update(sql, person.getName(), person.getAge());
     }
