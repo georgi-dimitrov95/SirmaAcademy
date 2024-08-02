@@ -1,12 +1,12 @@
-package controllers;
+package com.example.restdbapp.controllers;
 
-import models.Show;
+import com.example.restdbapp.models.Show;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import repositories.ShowRepository;
+import com.example.restdbapp.repositories.ShowRepository;
 
 @RestController
 @RequestMapping("/shows")

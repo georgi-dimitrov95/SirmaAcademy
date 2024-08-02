@@ -1,4 +1,4 @@
-package models;
+package com.example.restdbapp.models;
 
 public class Person {
     private int id;

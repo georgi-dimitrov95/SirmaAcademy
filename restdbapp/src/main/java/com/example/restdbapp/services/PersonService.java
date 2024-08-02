@@ -1,9 +1,9 @@
-package services;
+package com.example.restdbapp.services;
 
-import models.Person;
+import com.example.restdbapp.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.PersonRepository;
+import com.example.restdbapp.repositories.PersonRepository;
 
 @Service
 public class PersonService {

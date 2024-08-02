@@ -1,6 +1,6 @@
-package repositories;
+package com.example.restdbapp.repositories;
 
-import models.Show;
+import com.example.restdbapp.models.Show;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

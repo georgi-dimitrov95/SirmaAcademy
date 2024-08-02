@@ -1,12 +1,12 @@
-package controllers;
+package com.example.restdbapp.controllers;
 
-import models.Person;
+import com.example.restdbapp.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import services.PersonService;
+import com.example.restdbapp.services.PersonService;
 
 @RestController
 @RequestMapping("/people")

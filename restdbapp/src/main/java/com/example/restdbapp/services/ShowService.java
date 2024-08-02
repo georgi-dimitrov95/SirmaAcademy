@@ -1,9 +1,9 @@
-package services;
+package com.example.restdbapp.services;
 
-import models.Show;
+import com.example.restdbapp.models.Show;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.ShowRepository;
+import com.example.restdbapp.repositories.ShowRepository;
 
 @Service
 public class ShowService {
