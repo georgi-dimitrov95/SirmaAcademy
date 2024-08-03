@@ -29,4 +29,16 @@ public class ShowController {
         }
         return "Successfully registered the show";
     }
+
+    @PostMapping("/delete")
+    public String delete(@RequestBody String id) {
+//        TODO validation
+        try {
+            showRepository.deleteShowFromDatabase(id);
+        } catch (RuntimeException e) {
+            System.out.println("Ran into an error while registering show.");
+            throw  new RuntimeException(e);
+        }
+        return "Success";
+    }
 }
