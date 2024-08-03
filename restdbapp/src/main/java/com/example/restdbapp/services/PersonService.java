@@ -17,6 +17,10 @@ public class PersonService {
 
     public void registerPerson(Person person) {
 //        TODO data validation & password encryption
-        personRepository.saveUserInDatabase(person);
+        personRepository.savePersonInDatabase(person);
+    }
+
+    public void deletePerson(String id) {
+        personRepository.deletePersonFromDatabase(id);
     }
 }
