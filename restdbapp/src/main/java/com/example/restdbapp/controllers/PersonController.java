@@ -29,4 +29,16 @@ public class PersonController {
         }
         return "Success";
     }
+
+    @PostMapping("/delete")
+    public String delete(@RequestBody String id) {
+//        TODO validation
+        try {
+            personService.deletePerson(id);
+        } catch (Exception e) {
+            System.out.println("Ran into an error while deleting person.");
+            throw new RuntimeException(e);
+        }
+        return "Success";
+    }
 }
