@@ -19,4 +19,9 @@ public class ShowRepository {
         String sql = "INSERT INTO shows (title, year, episodes) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, show.getTitle(), show.getYear(), show.getEpisodes());
     }
+
+    public void deleteShowFromDatabase(String id) {
+        String sql = "DELETE FROM shows WHERE id=?";
+        jdbcTemplate.update(sql, Integer.parseInt(id));
+    }
 }
