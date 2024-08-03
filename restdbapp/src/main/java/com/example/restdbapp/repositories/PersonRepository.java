@@ -20,4 +20,9 @@ public class PersonRepository {
         String sql = "INSERT INTO people (name, age) VALUES (?, ?)";
         jdbcTemplate.update(sql, person.getName(), person.getAge());
     }
+
+    public void deletePersonFromDatabase(String id) {
+        String sql = "DELETE FROM people WHERE id=?";
+        jdbcTemplate.update(sql, Integer.parseInt(id));
+    }
 }
