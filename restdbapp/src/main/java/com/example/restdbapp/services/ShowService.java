@@ -19,4 +19,9 @@ public class ShowService {
 //        TODO data validation
         showRepository.saveShowToDatabase(show);
     }
+
+    public void deleteShow(String id) {
+//        TODO validation
+        showRepository.deleteShowFromDatabase(id);
+    }
 }
