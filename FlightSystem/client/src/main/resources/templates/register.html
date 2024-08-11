@@ -10,7 +10,7 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
+<div th:replace="~{fragments/header :: header}"></div>
 <main>
     <section>
         <h1>Register</h1>
@@ -27,7 +27,7 @@
                 <button type="submit">Register</button>
             </div>
             <div>
-                <a href="/login">Login</a>
+                <a th:href="@{/login}">Login</a>
             </div>
         </form>
     </section>
