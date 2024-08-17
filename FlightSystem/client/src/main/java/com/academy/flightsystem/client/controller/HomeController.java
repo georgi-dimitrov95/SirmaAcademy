@@ -20,11 +20,6 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
     @GetMapping("/flights")
     public String flights(Model model) {
         List<Flight> flights = flightService.getAllFlights();
