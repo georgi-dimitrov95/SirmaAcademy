@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Flight {
+//    those are named differently in flights.html (at least)
     private String fromLocation;
     private String toLocation;
     private LocalDateTime departureTime;
