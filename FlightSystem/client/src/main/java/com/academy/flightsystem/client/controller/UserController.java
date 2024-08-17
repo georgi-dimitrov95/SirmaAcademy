@@ -32,4 +32,10 @@ public class UserController {
             return "register";
         }
     }
+
+    @GetMapping("/login")
+    // TODO add error and logout
+    public String loginPage(Model model){
+        return "login";
+    }
 }
