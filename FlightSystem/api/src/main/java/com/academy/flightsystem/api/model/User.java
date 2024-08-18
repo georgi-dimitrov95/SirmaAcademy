@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,6 +18,7 @@ public class User {
     private Long id;
     private String username;
     private String password;
-    @ManyToMany
-    private Set<Role> roles;
+    private String roles;
+    @OneToMany
+    private List<Ticket> tickets;
 }
