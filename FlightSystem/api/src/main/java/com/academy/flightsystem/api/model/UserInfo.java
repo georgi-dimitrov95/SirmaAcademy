@@ -11,14 +11,14 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
-public class User {
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
+public class UserInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
-    private String roles;
-    @OneToMany
-    private List<Ticket> tickets;
+    private String roles = "USER";
+//    @OneToMany
+//    private List<Ticket> tickets;
 }
