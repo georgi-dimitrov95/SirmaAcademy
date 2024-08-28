@@ -28,6 +28,13 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
+//    pretty much the same as buildToken method, should be refactored or deleted
+//    check 10:23 on java brains jwt video - the methods there have the same problem...
+//    imo this method should be called createCustomClaims(UserInfoDetails user)-> create a new hashmap, populate it with custom claims, return the hashmap; then use the output(hashmap) of that method into Jwts.builder.setClaims(output hashmap) in buildToken method
+    public String generateToken(String username) {
+        return buildToken(username);
+    }
+
     public String buildToken(String username) {
         return Jwts.builder()
                 .subject(username)
@@ -35,10 +42,6 @@ public class JwtService {
                 .expiration(new Date(System.currentTimeMillis() + getExpiration()))
                 .signWith(getSignKey())
                 .compact();
-    }
-
-    public String generateToken(String username) {
-        return "";
     }
 
     public boolean isTokenValid(String token) {
