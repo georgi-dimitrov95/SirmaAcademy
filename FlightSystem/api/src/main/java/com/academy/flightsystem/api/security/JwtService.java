@@ -1,5 +1,6 @@
 package com.academy.flightsystem.api.security;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -42,6 +43,14 @@ public class JwtService {
                 .expiration(new Date(System.currentTimeMillis() + getExpiration()))
                 .signWith(getSignKey())
                 .compact();
+    }
+
+    private Claims getAllClaims(String token) {
+        return Jwts.parser()
+                .verifyWith(getSignKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
     }
 
     public boolean isTokenValid(String token) {
