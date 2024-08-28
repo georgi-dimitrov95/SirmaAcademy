@@ -28,6 +28,15 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
+    public String buildToken(String username) {
+        return Jwts.builder()
+                .subject(username)
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis() + getExpiration()))
+                .signWith(getSignKey())
+                .compact();
+    }
+
     public String generateToken(String username) {
         return "";
     }
