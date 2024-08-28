@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
+import java.util.function.Function;
 
 // JwtService is responsible for generating, validating and extracting info from JWTs.
 // It handles core operations like creating & extracting claims and validating tokens against user details.
@@ -45,12 +46,17 @@ public class JwtService {
                 .compact();
     }
 
-    private Claims getAllClaims(String token) {
+    public Claims getAllClaims(String token) {
         return Jwts.parser()
                 .verifyWith(getSignKey())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
+    }
+
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+        Claims claims = getAllClaims(token);
+        return claimsResolver.apply(claims);
     }
 
     public boolean isTokenValid(String token) {
