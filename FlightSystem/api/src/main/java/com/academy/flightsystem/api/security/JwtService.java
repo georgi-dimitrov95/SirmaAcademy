@@ -6,6 +6,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -15,13 +16,12 @@ import java.util.function.Function;
 // JwtService is responsible for generating, validating and extracting info from JWTs.
 // It handles core operations like creating & extracting claims and validating tokens against user details.
 @Service
+@Getter
 public class JwtService {
 
-    @Getter
     @Value("${jwt.secret}")
     private String key;
 
-    @Getter
     @Value("${jwt.expiration}")
     private Long expiration;
 
@@ -64,8 +64,8 @@ public class JwtService {
         return username;
     }
 
-    public boolean isTokenValid(String token) {
-        return true;
+    public boolean isTokenValid(String token, UserDetails userDetails) {
+        String username = extractUsername(token);
+        return username.equals(userDetails.getUsername());
     }
-
 }
