@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class FlightService {
@@ -21,7 +22,7 @@ public class FlightService {
 
     public List<Flight> getAllFlights() {
         Flight[] flights = restTemplate.getForObject(backendApiUrl + "/flights", Flight[].class);
-        return Arrays.asList(flights);
+        return Arrays.asList(Objects.requireNonNull(flights));
     }
 
 }
