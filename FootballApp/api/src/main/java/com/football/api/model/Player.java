@@ -17,6 +17,7 @@ public class Player {
     private String position;
     private String fullName;
 
-    @Transient
+    @ManyToOne
+    @JoinColumn(name="team_id")
     private Team team;
 }
