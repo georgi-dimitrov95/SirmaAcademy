@@ -20,4 +20,10 @@ public class Player {
     @ManyToOne
     @JoinColumn(name="team_id")
     private Team team;
+
+    public Player(String[] fieldsRow) {
+        this.teamNumber = Integer.parseInt(fieldsRow[1]);
+        this.position = fieldsRow[2];
+        this.fullName = fieldsRow[3];
+    }
 }

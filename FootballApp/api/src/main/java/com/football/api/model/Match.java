@@ -24,6 +24,7 @@ public class Match {
     @JoinColumn(name="b_team_id")
     private Team bTeam;
 
-    private LocalDate date;
+//    eventually convert to LocalDate
+    private String date;
     private String score;
 }
