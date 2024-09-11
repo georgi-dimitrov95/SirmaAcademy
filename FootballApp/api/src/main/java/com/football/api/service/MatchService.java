@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MatchService {
@@ -26,5 +27,9 @@ public class MatchService {
         } catch (IOException e) {
             throw new IOException("Invalid data and/or file path");
         }
+    }
+
+    public List<Match> getAllMatches() {
+        return matchJpaRepository.findAll();
     }
 }
