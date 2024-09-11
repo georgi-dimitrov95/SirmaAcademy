@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Player {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int teamNumber;
     private String position;
@@ -21,9 +21,10 @@ public class Player {
     @JoinColumn(name="team_id")
     private Team team;
 
-    public Player(String[] fieldsRow) {
+    public Player(String[] fieldsRow, Team team) {
         this.teamNumber = Integer.parseInt(fieldsRow[1]);
         this.position = fieldsRow[2];
         this.fullName = fieldsRow[3];
+        this.team = team;
     }
 }
