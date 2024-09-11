@@ -22,16 +22,17 @@ public class PlayerCsvReader extends CsvReader<Player> {
 
     public ArrayList<Player> csvToList(String filePath) throws IOException {
         ArrayList<Player> players = new ArrayList<>();
+
         try {
             List<String[]> rows = this.readFromCSV(filePath);
             PlayerValidatorCsv playerValidatorCsv = new PlayerValidatorCsv();
-            boolean invalidRows = true;
+            boolean validRows = true;
 
             for (String[] fieldsRow : rows) {
 //                logs every row of invalid data
                 if (!playerValidatorCsv.dataIsValid(fieldsRow)) {
                     logger.error("Invalid data in row containing values: {}", Arrays.toString(fieldsRow));
-                    invalidRows = false;
+                    validRows = false;
                     continue;
                 }
                 Long teamId = Long.parseLong(fieldsRow[4]);
@@ -45,13 +46,14 @@ public class PlayerCsvReader extends CsvReader<Player> {
             }
 
 //            throws an exception after parsing the data from each csv row
-            if (!invalidRows) {
+            if (!validRows) {
                 throw new IllegalArgumentException("Rows found with invalid data.");
             }
         } catch (IOException | IllegalArgumentException e) {
             logger.error("Invalid data in file with path: {}", filePath, e);
             throw new IOException(e);
         }
+
         return players;
     }
 }

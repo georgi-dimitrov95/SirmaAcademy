@@ -23,7 +23,7 @@ public class MatchCsvReader extends CsvReader<Match> {
     public ArrayList<Match> csvToList(String filePath) throws IOException {
         ArrayList<Match> matches = new ArrayList<>();
 
-        try  {
+        try {
             List<String[]> rows = this.readFromCSV(filePath);
             MatchValidatorCsv matchValidatorCsv = new MatchValidatorCsv();
             boolean validRows = true;
@@ -35,6 +35,7 @@ public class MatchCsvReader extends CsvReader<Match> {
                     continue;
                 }
 
+//                parse values needed for further validation
                 Long aTeamId = Long.parseLong(fieldsRow[1]);
                 Long bTeamId = Long.parseLong(fieldsRow[2]);
 
