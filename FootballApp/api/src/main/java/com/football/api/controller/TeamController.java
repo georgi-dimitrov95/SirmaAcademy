@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/teams")
 public class TeamController {
@@ -16,10 +18,10 @@ public class TeamController {
     @PostMapping("/csv")
     public String read() {
         try  {
-            teamService.csvToDatabase();
+            teamService.listToDatabase();
             return "Success";
-        } catch (RuntimeException e) {
-            return "Failed";
+        } catch (IOException e) {
+            return "Could not read CSV file";
         }
     }
 }
