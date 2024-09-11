@@ -19,13 +19,12 @@ public class MatchService {
     @Autowired
     MatchCsvReader matchCsvReader;
 
-    public void csvToDatabase() {
+    public void listToDatabase() throws IOException {
         try {
-            ArrayList<Match> matches = matchCsvReader.readFromCsv(TEAMS_FILE);
+            ArrayList<Match> matches = matchCsvReader.csvToList(TEAMS_FILE);
             matchJpaRepository.saveAll(matches);
         } catch (IOException e) {
-            System.out.println("Something went wrong during the CSV reading process.");
-            throw new RuntimeException(e);
+            throw new IOException("Invalid data and/or file path");
         }
     }
 }
