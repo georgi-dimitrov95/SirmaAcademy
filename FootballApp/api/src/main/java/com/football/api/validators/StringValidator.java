@@ -6,14 +6,16 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringValidator {
 
     public static boolean validateName(String name) {
 
 //        name can contain unicode characters, ', -, (captain)
-        String regex2a = "^[\\p{L} `'’-]+(\\p{Zs}\\(\\p{L}+\\))?$";
-        return name.matches(regex2a);
+        String regex = "^[\\p{L} `'’-]+(\\p{Zs}\\(\\p{L}+\\))?$";
+        return name.matches(regex);
     }
 
 //    in tournaments the group can only be a single uppercase letter
@@ -59,10 +61,11 @@ public class StringValidator {
         return false;
     }
 
-    //    checks for double and triple digits because of such cases like the one linked below... (also matches scores with penalties)
-//    https://en.wikipedia.org/wiki/AS_Adema_149%E2%80%930_SO_l%27Emyrne
-    public static boolean validateScore(String score) {
-        String regex = "^\\d{1,3}(\\(\\d{1,3}\\))?-\\d{1,3}(\\(\\d{1,3}\\))?$";
-        return score.matches(regex);
+//    checks if the string is a number in a valid format between 1-120 or "NULL"
+    public static boolean validateMinutes(String minutes) {
+        String regex = "^(0|1[0-1][0-9]|120|[1-9][0-9]?|NULL)$";
+        return minutes.matches(regex);
     }
+
+
 }
