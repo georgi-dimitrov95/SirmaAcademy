@@ -5,12 +5,11 @@ public class MatchValidatorCsv implements ValidatorCsv{
     @Override
     public boolean dataIsValid(String[] fieldsRow) {
 
-//        csv files for teams should have 5 columns
+//        csv files for matches should have 5 columns
         if (fieldsRow.length != 5) {
             return false;
         }
 
-//        skip the first element (containing ID) because it's not needed
         try {
             Long id = Long.parseLong(fieldsRow[0]);
             Long aID = Long.parseLong(fieldsRow[1]);
@@ -22,6 +21,6 @@ public class MatchValidatorCsv implements ValidatorCsv{
         String date = fieldsRow[3];
         String score = fieldsRow[4];
 
-        return StringValidator.validateDate(date) && StringValidator.validateScore(score);
+        return StringValidator.validateDate(date) && ScoreValidator.validateScore(score);
     }
 }
