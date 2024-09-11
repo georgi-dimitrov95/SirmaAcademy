@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Match {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -24,7 +24,13 @@ public class Match {
     @JoinColumn(name="b_team_id")
     private Team bTeam;
 
-//    eventually convert to LocalDate
     private String date;
     private String score;
+
+    public Match(Team aTeam, Team bTeam, String[] fieldsRow) {
+        this.aTeam = aTeam;
+        this.bTeam = bTeam;
+        this.date = fieldsRow[3];
+        this.score = fieldsRow[4];
+    }
 }
