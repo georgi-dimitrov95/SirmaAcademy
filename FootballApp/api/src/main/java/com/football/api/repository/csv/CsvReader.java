@@ -9,9 +9,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public abstract class CsvReader {
+public abstract class CsvReader<E> {
 
-    private static final Logger logger = LoggerFactory.getLogger(CsvReader.class);
+    public static final Logger logger = LoggerFactory.getLogger(CsvReader.class);
 
     public ArrayList<String[]> readFromCSV(String filePath) throws IOException {
         ArrayList<String[]> rows = new ArrayList<>();
@@ -32,7 +32,10 @@ public abstract class CsvReader {
             }
         } catch (FileNotFoundException e) {
             logger.error("No file found at path: {}", filePath, e);
+            throw new IOException(e);
         }
         return rows;
     }
+
+    public abstract ArrayList<E> csvToList(String filePath) throws IOException;
 }
