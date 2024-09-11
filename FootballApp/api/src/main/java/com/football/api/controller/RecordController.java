@@ -1,10 +1,13 @@
 package com.football.api.controller;
 
+import com.football.api.model.Match;
+import com.football.api.model.Record;
 import com.football.api.service.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/records")
@@ -21,5 +24,9 @@ public class RecordController {
         } catch (IOException e) {
             return "Could not read CSV file";
         }
+    }
+
+    public List<Record> getAllRecords() {
+        return recordService.getAllRecords();
     }
 }

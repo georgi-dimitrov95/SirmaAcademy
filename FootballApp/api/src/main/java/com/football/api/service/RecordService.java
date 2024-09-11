@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class RecordService {
@@ -26,5 +27,9 @@ public class RecordService {
         } catch (IOException e) {
             throw new IOException("Invalid data and/or file path");
         }
+    }
+
+    public List<Record> getAllRecords() {
+        return recordJpaRepository.findAll();
     }
 }
