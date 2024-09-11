@@ -13,7 +13,6 @@ public class PlayerValidatorCsv implements ValidatorCsv{
         }
 
 //        skip the first element (containing ID) because it's not needed
-
         try {
             int teamNumber = Integer.parseInt(fieldsRow[1]);
             Long teamId = Long.parseLong(fieldsRow[4]);
