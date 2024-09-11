@@ -10,6 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface PlayerJpaRepository extends JpaRepository<Player, Long> {
-    @Override
-    List<Player> findAll();
+
 }
