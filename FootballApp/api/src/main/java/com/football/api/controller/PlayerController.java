@@ -4,6 +4,8 @@ import com.football.api.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/players")
 public class PlayerController {
@@ -14,10 +16,10 @@ public class PlayerController {
     @PostMapping("/csv")
     public String read() {
         try  {
-            playerService.csvToDatabase();
+            playerService.listToDatabase();
             return "Success";
-        } catch (RuntimeException e) {
-            return "Failed";
+        } catch (IOException e) {
+            return "Could not read CSV file";
         }
     }
 }
