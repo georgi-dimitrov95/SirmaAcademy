@@ -28,6 +28,23 @@ public class StringValidator {
         return positions.contains(position);
     }
 
+//    used in validateDate method
+    private static ArrayList<String> getDateFormats() {
+        ArrayList<String> validDateFormats = new ArrayList<>();
+        validDateFormats.add("M/d/uuuu");
+        validDateFormats.add("M/dd/uuuu");
+        validDateFormats.add("M/D/uuuu");
+        validDateFormats.add("MM/d/uuuu");
+        validDateFormats.add("MM/D/uuuu");
+        validDateFormats.add("MM/dd/uuuu");
+
+        validDateFormats.add("MM-d-uuuu");
+        validDateFormats.add("MM-dd-uuuu");
+        validDateFormats.add("M-d-uuuu");
+        validDateFormats.add("M-dd-uuuu");
+        return validDateFormats;
+    }
+
     public static boolean validateDate(String date) {
         ArrayList<String> validDateFormats = getDateFormats();
 
@@ -37,31 +54,9 @@ public class StringValidator {
             try {
                 LocalDate.parse(date.trim(), formatter);
                 return true;
-            } catch (DateTimeParseException ignored) {
-
-            }
+            } catch (DateTimeParseException ignored) {}
         }
         return false;
-    }
-
-    private static ArrayList<String> getDateFormats() {
-        ArrayList<String> validDateFormats = new ArrayList<>();
-        validDateFormats.add("M/d/yyyy");
-        validDateFormats.add("M/dd/yyyy");
-        validDateFormats.add("M/D/yyyy");
-        validDateFormats.add("MM/d/yyy");
-        validDateFormats.add("MM/D/yyy");
-        validDateFormats.add("MM/DD/yyy");
-        validDateFormats.add("MM/d/yyy");
-
-        validDateFormats.add("M-d-yyyy");
-        validDateFormats.add("M-dd-yyyy");
-        validDateFormats.add("M-D-yyyy");
-        validDateFormats.add("MM-d-yyy");
-        validDateFormats.add("MM-D-yyy");
-        validDateFormats.add("MM-DD-yyy");
-        validDateFormats.add("MM-d-yyy");
-        return validDateFormats;
     }
 
     //    checks for double and triple digits because of such cases like the one linked below... (also matches scores with penalties)
