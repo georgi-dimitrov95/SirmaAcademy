@@ -1,6 +1,6 @@
 package com.football.api.validators;
 
-public class MatchValidator implements ValidatorCsv{
+public class MatchValidatorCsv implements ValidatorCsv{
 
     @Override
     public boolean dataIsValid(String[] fieldsRow) {
@@ -12,6 +12,7 @@ public class MatchValidator implements ValidatorCsv{
 
 //        skip the first element (containing ID) because it's not needed
         try {
+            Long id = Long.parseLong(fieldsRow[0]);
             Long aID = Long.parseLong(fieldsRow[1]);
             Long bID = Long.parseLong(fieldsRow[2]);
         } catch (NumberFormatException e) {
