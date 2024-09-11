@@ -1,5 +1,9 @@
 package com.football.api.validators;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -24,10 +28,46 @@ public class StringValidator {
         return positions.contains(position);
     }
 
-//    checks for double and triple digits because of such cases like the one linked below...
+    public static boolean validateDate(String date) {
+        ArrayList<String> validDateFormats = getDateFormats();
+
+//        checks if the date matches a valid date format
+        for (String dateFormat : validDateFormats) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat).withResolverStyle(ResolverStyle.STRICT);
+            try {
+                LocalDate.parse(date.trim(), formatter);
+                return true;
+            } catch (DateTimeParseException ignored) {
+
+            }
+        }
+        return false;
+    }
+
+    private static ArrayList<String> getDateFormats() {
+        ArrayList<String> validDateFormats = new ArrayList<>();
+        validDateFormats.add("M/d/yyyy");
+        validDateFormats.add("M/dd/yyyy");
+        validDateFormats.add("M/D/yyyy");
+        validDateFormats.add("MM/d/yyy");
+        validDateFormats.add("MM/D/yyy");
+        validDateFormats.add("MM/DD/yyy");
+        validDateFormats.add("MM/d/yyy");
+
+        validDateFormats.add("M-d-yyyy");
+        validDateFormats.add("M-dd-yyyy");
+        validDateFormats.add("M-D-yyyy");
+        validDateFormats.add("MM-d-yyy");
+        validDateFormats.add("MM-D-yyy");
+        validDateFormats.add("MM-DD-yyy");
+        validDateFormats.add("MM-d-yyy");
+        return validDateFormats;
+    }
+
+    //    checks for double and triple digits because of such cases like the one linked below... (also matches scores with penalties)
 //    https://en.wikipedia.org/wiki/AS_Adema_149%E2%80%930_SO_l%27Emyrne
     public static boolean validateScore(String score) {
-        String regex = "^\\d{1,3}-\\d{1,3}$";
+        String regex = "^\\d{1,3}(\\(\\d{1,3}\\))?-\\d{1,3}(\\(\\d{1,3}\\))?$";
         return score.matches(regex);
     }
 }
