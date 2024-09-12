@@ -35,5 +35,9 @@ public class Pair {
     public int hashCode() {
         return Objects.hash(a) + Objects.hash(b);
     }
+
+    public void addMinutes(int minutes) {
+        totalMinutesShared += minutes;
+    }
 }
 
