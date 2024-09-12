@@ -1,8 +1,10 @@
 package com.football.api.service;
 
 import com.football.api.model.Match;
+import com.football.api.model.dto.MatchDto;
 import com.football.api.repository.csv.MatchCsvReader;
 import com.football.api.repository.jpa.MatchJpaRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +33,10 @@ public class MatchService {
 
     public List<Match> getAllMatches() {
         return matchJpaRepository.findAll();
+    }
+
+    public MatchDto getMatch(Long id) {
+        Match match = matchJpaRepository.findById(id).orElseThrow(EntityNotFoundException::new);;
+        return new MatchDto(match);
     }
 }
