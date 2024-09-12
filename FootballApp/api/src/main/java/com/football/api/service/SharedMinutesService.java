@@ -27,18 +27,13 @@ public class SharedMinutesService {
     RecordJpaRepository recordJpaRepository;
 
 
-    public List<Record> getPairWithMostSharedMinutes() {
+    public Set<Pair> getPairWithMostSharedMinutes() {
         List<Player> players = playerJpaRepository.findAll();
         List<Match> matches = matchJpaRepository.findAll();
         List<Record> records = recordJpaRepository.findAll();
-        Set<Pair> pairs = new HashSet<>();
+        Set<Pair> pairs = new LinkedHashSet<>();
 
         for (Player playerA : players) {
-
-//            put playerA in a pair
-            Pair pair = new Pair();
-            pair.setA(playerA);
-
             List<Record> playerRecords = recordJpaRepository.findByPlayerId(playerA.getId());
 
 //            go through all records of playerA
@@ -66,15 +61,33 @@ public class SharedMinutesService {
                         if ((aFromMinutes <= bToMinutes) && (aToMinutes >= bFromMinutes)) {
                             int shared = Math.min(aToMinutes, bToMinutes) - Math.max(aFromMinutes, bFromMinutes);
 
+                            Pair pair = new Pair();
+                            pair.setA(playerA);
                             pair.setB(playerB);
-                            pair.getMinutesShared().add(shared);
-                            pairs.add(pair);
+
+//                            if there is already such a pair, add the shared minutes and matches to the pair in the list of pairs
+                            for (Pair pairX : pairs) {
+                                if (pairX.equals(pair)) {
+//                                    avoids duplication of elements in the minutesShared arraylist
+                                    if (playerA == pairX.getA() && playerB == pairX.getB()) {
+                                        pairX.getMinutesShared().add(shared);
+                                        pairX.getMatchesSharedById().add(match.getId());
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (!pairs.contains(pair)) {
+                                pair.getMinutesShared().add(shared);
+                                pair.getMatchesSharedById().add(match.getId());
+                                pairs.add(pair);
+                            }
                         }
                     }
                 }
             }
         }
 //        adding this return because i am turning in the project, will finish it after 00:00
-        return records;
+        return pairs;
     }
 }

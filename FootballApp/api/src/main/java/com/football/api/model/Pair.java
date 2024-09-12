@@ -3,16 +3,11 @@ package com.football.api.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class Pair {
 
     private Player a;
@@ -20,20 +15,25 @@ public class Pair {
 
     ArrayList<Integer> minutesShared;
     private int totalMinutesShared;
+    private HashSet<Long> matchesSharedById;
 
-//    key is MatchID, array contains fromMinutes & toMinutes
-//    private HashMap<Long, Integer> aMinutesPerMatch;
-//    private HashMap<Long, Integer> bMinutesPerMatch;
+    public Pair() {
+        this.minutesShared = new ArrayList<>();
+        this.matchesSharedById = new HashSet<>();
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Pair other = (Pair) obj;
 
+        return (Objects.equals(a, other.getA()) && Objects.equals(b, other.getB())) ||
+                (Objects.equals(a, other.getB()) && Objects.equals(b, other.getA()));
+    }
 
-//    public void setTotalMinutesShared() {
-//        this.totalMinutesShared = sharedMinutesPerMatch.stream().mapToInt(Integer::intValue).sum();
-//    }
-//
-//    public Pair(Player player1, Player player2) {
-//        this.player1 = player1;
-//        this.player2 = player2;
-//        this.sharedMinutesPerMatch = new ArrayList<>();
+    public int hashCode() {
+        return Objects.hash(a) + Objects.hash(b);
+    }
 }
 
