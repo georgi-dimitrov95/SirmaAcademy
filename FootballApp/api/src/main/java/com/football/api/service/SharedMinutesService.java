@@ -73,3 +73,49 @@ public class SharedMinutesService {
         return pairDTOs;
     }
 }
+
+////    gets all unique Pairs of players that have shared minutes together (not sorted)
+////    for variable 'pairs' I couldn't make it work properly with a HashSet<Pair>, so I used List<Pair>
+//public List<Pair> getPairsWithSharedMinutes() {
+//    List<Player> players = playerJpaRepository.findAll();
+//    List<Pair> pairs = new ArrayList<>();
+//
+//    for (Player playerA : players) {
+//        List<Record> playerRecords = recordJpaRepository.findByPlayerId(playerA.getId());
+//
+////            go through all records of playerA
+//        for (Record record : playerRecords) {
+//            Long matchId = record.getMatch().getId();
+//            List<Record> recordsFromSameMatch = recordJpaRepository.findByMatchId(matchId);
+//
+////                go through all records from the same match
+//            for (Record recordInCurrentMatch : recordsFromSameMatch) {
+//                Player playerB = recordInCurrentMatch.getPlayer();
+//                Long bId = playerB.getId();
+//                String bTeam = playerB.getTeam().getName();
+//
+////                    check if playerB has different Id and is a teammate of playerA
+//                if (!Objects.equals(bId, playerA.getId()) && Objects.equals(bTeam, playerA.getTeam().getName())) {
+////                        get minutes ranges for playerA and playerB
+//                    int aStart = record.getFromMinutes();
+//                    int aEnd = record.getToMinutes();
+//                    int bStart = recordInCurrentMatch.getFromMinutes();
+//                    int bEnd = recordInCurrentMatch.getToMinutes();
+//
+////                        calculate minutes if they overlap
+//                    if ((aStart <= bEnd) && (aEnd >= bStart)) {
+//                        int shared = Math.min(aEnd, bEnd) - Math.max(aStart, bStart);
+//                        Pair pair = new Pair(playerA, playerB);
+//
+////                            if such a pair exists in pairs, adds the shared minutes to the pair and also checks for a duplicate pair
+//                        SharedMinutesUtil.addSharedMinutesToExistingPair(pairs, pair, matchId, shared);
+////                             creates new pair and add it to the list
+//                        SharedMinutesUtil.addNewPairToList(pairs, pair, matchId, shared);
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//    return pairs;
+//}
