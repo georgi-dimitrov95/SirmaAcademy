@@ -1,8 +1,10 @@
 package com.football.api.service;
 
 import com.football.api.model.Player;
+import com.football.api.model.dto.PlayerDto;
 import com.football.api.repository.csv.PlayerCsvReader;
 import com.football.api.repository.jpa.PlayerJpaRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,4 +35,8 @@ public class PlayerService {
         return playerJpaRepository.findAll();
     }
 
+    public PlayerDto getPlayer(Long id) {
+        Player player = playerJpaRepository.findById(id).orElseThrow(EntityNotFoundException::new);;
+        return new PlayerDto(player);
+    }
 }
