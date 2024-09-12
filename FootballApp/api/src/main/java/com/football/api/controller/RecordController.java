@@ -2,8 +2,12 @@ package com.football.api.controller;
 
 import com.football.api.model.Match;
 import com.football.api.model.Record;
+import com.football.api.model.dto.RecordDto;
 import com.football.api.service.RecordService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -26,7 +30,20 @@ public class RecordController {
         }
     }
 
+    @GetMapping("/get")
     public List<Record> getAllRecords() {
         return recordService.getAllRecords();
     }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> getRecord(@PathVariable Long id) {
+        try {
+            RecordDto recordDto = recordService.getRecord(id);
+            return ResponseEntity.ok(recordDto);
+        } catch (EntityNotFoundException e) {
+            String errorMessage = "Record not found with ID: " + id;
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+        }
+    }
+
 }
