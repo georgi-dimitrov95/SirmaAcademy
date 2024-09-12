@@ -36,7 +36,7 @@ public class PlayerService {
     }
 
     public PlayerDto getPlayer(Long id) {
-        Player player = playerJpaRepository.findById(id).orElseThrow(EntityNotFoundException::new);;
+        Player player = playerJpaRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return new PlayerDto(player);
     }
 }
