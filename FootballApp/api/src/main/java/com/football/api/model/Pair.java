@@ -17,7 +17,10 @@ public class Pair {
     private int totalMinutesShared;
     private HashSet<Long> matchesSharedById;
 
-    public Pair() {
+
+    public Pair(Player playerA, Player playerB) {
+        this.a = playerA;
+        this.b = playerB;
         this.minutesShared = new ArrayList<>();
         this.matchesSharedById = new HashSet<>();
     }
