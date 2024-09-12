@@ -84,7 +84,7 @@ public class SharedMinutesService {
         return pairs;
     }
 
-
+//    this method and the one below are needed because there can be more than one Pair with max shared minutes (this is the case with the whole English team according to the csv data)
     public List<Pair> getPairsWithMostMinutesShared() {
         List<Pair> pairs = getPairsWithSharedMinutes();
 
