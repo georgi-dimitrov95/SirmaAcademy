@@ -16,7 +16,7 @@ public class RecordDto {
 
     public RecordDto(Record record) {
         this.player = record.getPlayer().getFullName();
-        this.match = record.getMatch().getATeam().getName() + record.getMatch().getBTeam().getName();
+        this.match = record.getMatch().getATeam().getName() + " - " + record.getMatch().getBTeam().getName();
         this.fromMinutes = record.getFromMinutes();
         this.toMinutes = record.getToMinutes();
     }
