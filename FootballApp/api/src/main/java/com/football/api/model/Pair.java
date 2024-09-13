@@ -13,10 +13,9 @@ public class Pair {
     private Player a;
     private Player b;
 
-    ArrayList<Integer> minutesShared;
-    private int totalMinutesShared;
+    private ArrayList<Integer> minutesShared;
     private HashSet<Long> matchesSharedById;
-
+    private int totalMinutesShared;
 
     public Pair(Player playerA, Player playerB) {
         this.a = playerA;
