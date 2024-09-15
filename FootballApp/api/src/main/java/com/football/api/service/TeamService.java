@@ -40,6 +40,14 @@ public class TeamService {
          return new TeamDto(team);
     }
 
+    public void deleteTeam(Long id) {
+        if (teamJpaRepository.existsById(id)) {
+            teamJpaRepository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException();
+        }
+    }
+
     public Team addTeam(Team team) {
         return teamJpaRepository.save(team);
     }

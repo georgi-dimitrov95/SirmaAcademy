@@ -45,6 +45,18 @@ public class TeamController {
         }
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteTeam(@PathVariable Long id) {
+        try {
+            teamService.deleteTeam(id);
+            String successMessage = "Successfully deleted team with ID: " + id;
+            return ResponseEntity.status(HttpStatus.OK).body(successMessage);
+        } catch (EntityNotFoundException e) {
+            String errorMessage = "Team not found with ID: " + id;
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+        }
+    }
+
     @PostMapping("/add")
     public ResponseEntity<Team> addTeam(@RequestBody Team team) {
         Team savedTeam = teamService.addTeam(team);
