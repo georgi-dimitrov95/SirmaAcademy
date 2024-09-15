@@ -1,13 +1,11 @@
 package com.football.api.controller;
 
-import com.football.api.model.Player;
 import com.football.api.model.Team;
 import com.football.api.model.dto.TeamDto;
 import com.football.api.service.TeamService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,5 +43,11 @@ public class TeamController {
             String errorMessage = "Team not found with ID: " + id;
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
         }
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Team> addTeam(@RequestBody Team team) {
+        Team savedTeam = teamService.addTeam(team);
+        return new ResponseEntity<>(savedTeam, HttpStatus.CREATED);
     }
 }

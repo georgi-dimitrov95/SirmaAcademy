@@ -39,4 +39,8 @@ public class TeamService {
          Team team = teamJpaRepository.findById(id).orElseThrow(EntityNotFoundException::new);
          return new TeamDto(team);
     }
+
+    public Team addTeam(Team team) {
+        return teamJpaRepository.save(team);
+    }
 }
