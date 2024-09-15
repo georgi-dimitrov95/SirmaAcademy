@@ -39,4 +39,12 @@ public class RecordService {
         Record record = recordJpaRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return new RecordDto(record);
     }
+
+    public void deleteRecord(Long id) {
+        if (recordJpaRepository.existsById(id)) {
+            recordJpaRepository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException();
+        }
+    }
 }

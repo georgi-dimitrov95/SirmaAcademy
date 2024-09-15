@@ -1,6 +1,5 @@
 package com.football.api.controller;
 
-import com.football.api.model.Match;
 import com.football.api.model.Record;
 import com.football.api.model.dto.RecordDto;
 import com.football.api.service.RecordService;
@@ -46,4 +45,15 @@ public class RecordController {
         }
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteRecord(@PathVariable Long id) {
+        try {
+            recordService.deleteRecord(id);
+            String successMessage = "Successfully deleted record with ID: " + id;
+            return ResponseEntity.status(HttpStatus.OK).body(successMessage);
+        } catch (EntityNotFoundException e) {
+            String errorMessage = "Record not found with ID: " + id;
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+        }
+    }
 }
