@@ -44,4 +44,16 @@ public class PlayerController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
         }
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deletePlayer(@PathVariable Long id) {
+        try {
+            playerService.deletePlayer(id);
+            String successMessage = "Successfully deleted player with ID: " + id;
+            return ResponseEntity.status(HttpStatus.OK).body(successMessage);
+        } catch (EntityNotFoundException e) {
+            String errorMessage = "Player not found with ID: " + id;
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+        }
+    }
 }

@@ -31,6 +31,14 @@ public class PlayerService {
         }
     }
 
+    public void deletePlayer(Long id) {
+        if (playerJpaRepository.existsById(id)) {
+            playerJpaRepository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException();
+        }
+    }
+
     public List<Player> getAllPlayers() {
         return playerJpaRepository.findAll();
     }
