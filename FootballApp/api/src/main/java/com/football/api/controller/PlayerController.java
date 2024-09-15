@@ -45,6 +45,12 @@ public class PlayerController {
         }
     }
 
+    @PostMapping("/add")
+    public ResponseEntity<Player> addPlayer(@RequestBody Player player) {
+        Player savedPlayer = playerService.addPlayer(player);
+        return new ResponseEntity<>(savedPlayer, HttpStatus.CREATED);
+    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deletePlayer(@PathVariable Long id) {
         try {

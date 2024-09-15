@@ -39,6 +39,10 @@ public class PlayerService {
         }
     }
 
+    public Player addPlayer(Player player) {
+        return playerJpaRepository.save(player);
+    }
+
     public List<Player> getAllPlayers() {
         return playerJpaRepository.findAll();
     }
