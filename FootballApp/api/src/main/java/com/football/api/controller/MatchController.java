@@ -45,4 +45,16 @@ public class MatchController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
         }
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteMatch(@PathVariable Long id) {
+        try {
+            matchService.deleteMatch(id);
+            String successMessage = "Successfully deleted match with ID: " + id;
+            return ResponseEntity.status(HttpStatus.OK).body(successMessage);
+        } catch (EntityNotFoundException e) {
+            String errorMessage = "Match not found with ID: " + id;
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+        }
+    }
 }

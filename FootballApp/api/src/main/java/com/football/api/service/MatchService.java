@@ -39,4 +39,12 @@ public class MatchService {
         Match match = matchJpaRepository.findById(id).orElseThrow(EntityNotFoundException::new);;
         return new MatchDto(match);
     }
+
+    public void deleteMatch(Long id) {
+        if (matchJpaRepository.existsById(id)) {
+            matchJpaRepository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException();
+        }
+    }
 }
