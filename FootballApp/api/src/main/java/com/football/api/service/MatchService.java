@@ -1,6 +1,7 @@
 package com.football.api.service;
 
 import com.football.api.model.Match;
+import com.football.api.model.Team;
 import com.football.api.model.dto.MatchDto;
 import com.football.api.repository.csv.MatchCsvReader;
 import com.football.api.repository.jpa.MatchJpaRepository;
@@ -41,6 +42,15 @@ public class MatchService {
     }
 
     public Match addMatch(Match match) {
+        return matchJpaRepository.save(match);
+    }
+
+    public Match updateMatch(Long id, Match updateMatch) {
+        Match match = matchJpaRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        match.setATeam(updateMatch.getATeam());
+        match.setBTeam(updateMatch.getBTeam());
+        match.setDate(updateMatch.getDate());
+        match.setScore(updateMatch.getScore());
         return matchJpaRepository.save(match);
     }
 
