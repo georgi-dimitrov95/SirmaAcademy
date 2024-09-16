@@ -40,6 +40,10 @@ public class MatchService {
         return new MatchDto(match);
     }
 
+    public Match addMatch(Match match) {
+        return matchJpaRepository.save(match);
+    }
+
     public void deleteMatch(Long id) {
         if (matchJpaRepository.existsById(id)) {
             matchJpaRepository.deleteById(id);

@@ -1,7 +1,7 @@
 package com.football.api.controller;
 
 import com.football.api.model.Match;
-import com.football.api.model.Team;
+import com.football.api.model.Player;
 import com.football.api.model.dto.MatchDto;
 import com.football.api.service.MatchService;
 import jakarta.persistence.EntityNotFoundException;
@@ -44,6 +44,12 @@ public class MatchController {
             String errorMessage = "Match not found with ID: " + id;
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
         }
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Match> addMatch(@RequestBody Match match) {
+        Match savedMatch = matchService.addMatch(match);
+        return new ResponseEntity<>(savedMatch, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
