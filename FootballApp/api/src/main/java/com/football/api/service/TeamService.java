@@ -40,15 +40,23 @@ public class TeamService {
          return new TeamDto(team);
     }
 
+    public Team addTeam(Team team) {
+        return teamJpaRepository.save(team);
+    }
+
+    public Team updateTeam(Long id, Team updateTeam) {
+        Team team = teamJpaRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        team.setName(updateTeam.getName());
+        team.setManager(updateTeam.getManager());
+        team.setTournamentGroup(updateTeam.getTournamentGroup());
+        return teamJpaRepository.save(team);
+    }
+
     public void deleteTeam(Long id) {
         if (teamJpaRepository.existsById(id)) {
             teamJpaRepository.deleteById(id);
         } else {
             throw new EntityNotFoundException();
         }
-    }
-
-    public Team addTeam(Team team) {
-        return teamJpaRepository.save(team);
     }
 }

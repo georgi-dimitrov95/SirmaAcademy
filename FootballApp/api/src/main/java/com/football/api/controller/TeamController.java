@@ -45,6 +45,24 @@ public class TeamController {
         }
     }
 
+    @PostMapping("/add")
+    public ResponseEntity<Team> addTeam(@RequestBody Team team) {
+        Team savedTeam = teamService.addTeam(team);
+        return new ResponseEntity<>(savedTeam, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/put/{id}")
+    public ResponseEntity<?> putTeam(@PathVariable Long id, @RequestBody Team updateTeam) {
+        try {
+            Team team = teamService.updateTeam(id, updateTeam);
+            return ResponseEntity.ok(team);
+        } catch (EntityNotFoundException e) {
+            String errorMessage = "Team not found with ID: " + id;
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+        }
+    }
+
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteTeam(@PathVariable Long id) {
         try {
@@ -55,11 +73,5 @@ public class TeamController {
             String errorMessage = "Team not found with ID: " + id;
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
         }
-    }
-
-    @PostMapping("/add")
-    public ResponseEntity<Team> addTeam(@RequestBody Team team) {
-        Team savedTeam = teamService.addTeam(team);
-        return new ResponseEntity<>(savedTeam, HttpStatus.CREATED);
     }
 }
