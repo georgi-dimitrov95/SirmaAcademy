@@ -1,6 +1,7 @@
 package com.football.api.controller;
 
 import com.football.api.model.Player;
+import com.football.api.model.Team;
 import com.football.api.model.dto.PlayerDto;
 import com.football.api.service.PlayerService;
 import jakarta.persistence.EntityNotFoundException;
@@ -49,6 +50,17 @@ public class PlayerController {
     public ResponseEntity<Player> addPlayer(@RequestBody Player player) {
         Player savedPlayer = playerService.addPlayer(player);
         return new ResponseEntity<>(savedPlayer, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/put/{id}")
+    public ResponseEntity<?> putPlayer(@PathVariable Long id, @RequestBody Player updatePlayer) {
+        try {
+            Player player = playerService.updatePlayer(id, updatePlayer);
+            return ResponseEntity.ok(player);
+        } catch (EntityNotFoundException e) {
+            String errorMessage = "Player not found with ID: " + id;
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+        }
     }
 
     @DeleteMapping("/delete/{id}")

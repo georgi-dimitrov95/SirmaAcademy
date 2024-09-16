@@ -62,7 +62,6 @@ public class TeamController {
         }
     }
 
-
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteTeam(@PathVariable Long id) {
         try {

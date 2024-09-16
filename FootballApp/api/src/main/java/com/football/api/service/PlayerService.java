@@ -31,18 +31,6 @@ public class PlayerService {
         }
     }
 
-    public void deletePlayer(Long id) {
-        if (playerJpaRepository.existsById(id)) {
-            playerJpaRepository.deleteById(id);
-        } else {
-            throw new EntityNotFoundException();
-        }
-    }
-
-    public Player addPlayer(Player player) {
-        return playerJpaRepository.save(player);
-    }
-
     public List<Player> getAllPlayers() {
         return playerJpaRepository.findAll();
     }
@@ -50,5 +38,26 @@ public class PlayerService {
     public PlayerDto getPlayer(Long id) {
         Player player = playerJpaRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return new PlayerDto(player);
+    }
+
+    public Player addPlayer(Player player) {
+        return playerJpaRepository.save(player);
+    }
+
+    public Player updatePlayer(Long id, Player updatePlayer) {
+        Player player = playerJpaRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        player.setTeamNumber(updatePlayer.getTeamNumber());
+        player.setPosition(updatePlayer.getPosition());
+        player.setFullName(updatePlayer.getFullName());
+        player.setTeam(updatePlayer.getTeam());
+        return playerJpaRepository.save(player);
+    }
+
+    public void deletePlayer(Long id) {
+        if (playerJpaRepository.existsById(id)) {
+            playerJpaRepository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException();
+        }
     }
 }
