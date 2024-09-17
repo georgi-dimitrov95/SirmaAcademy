@@ -5,6 +5,7 @@ import com.football.api.model.Team;
 import com.football.api.model.dto.MatchDto;
 import com.football.api.service.MatchService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,13 +48,13 @@ public class MatchController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Match> addMatch(@RequestBody Match match) {
+    public ResponseEntity<Match> addMatch(@Valid @RequestBody Match match) {
         Match savedMatch = matchService.addMatch(match);
         return new ResponseEntity<>(savedMatch, HttpStatus.CREATED);
     }
 
     @PutMapping("/put/{id}")
-    public ResponseEntity<?> putMatch(@PathVariable Long id, @RequestBody Match updateMatch) {
+    public ResponseEntity<?> putMatch(@PathVariable Long id, @Valid @RequestBody Match updateMatch) {
         try {
             Match match = matchService.updateMatch(id, updateMatch);
             return ResponseEntity.ok(match);

@@ -5,6 +5,7 @@ import com.football.api.model.Team;
 import com.football.api.model.dto.PlayerDto;
 import com.football.api.service.PlayerService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,13 +48,13 @@ public class PlayerController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Player> addPlayer(@RequestBody Player player) {
+    public ResponseEntity<Player> addPlayer(@Valid @RequestBody Player player) {
         Player savedPlayer = playerService.addPlayer(player);
         return new ResponseEntity<>(savedPlayer, HttpStatus.CREATED);
     }
 
     @PutMapping("/put/{id}")
-    public ResponseEntity<?> putPlayer(@PathVariable Long id, @RequestBody Player updatePlayer) {
+    public ResponseEntity<?> putPlayer(@PathVariable Long id, @Valid @RequestBody Player updatePlayer) {
         try {
             Player player = playerService.updatePlayer(id, updatePlayer);
             return ResponseEntity.ok(player);

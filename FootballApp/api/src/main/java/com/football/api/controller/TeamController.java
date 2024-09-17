@@ -4,6 +4,7 @@ import com.football.api.model.Team;
 import com.football.api.model.dto.TeamDto;
 import com.football.api.service.TeamService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,13 +47,13 @@ public class TeamController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Team> addTeam(@RequestBody Team team) {
+    public ResponseEntity<Team> addTeam(@Valid @RequestBody Team team) {
         Team savedTeam = teamService.addTeam(team);
         return new ResponseEntity<>(savedTeam, HttpStatus.CREATED);
     }
 
     @PutMapping("/put/{id}")
-    public ResponseEntity<?> putTeam(@PathVariable Long id, @RequestBody Team updateTeam) {
+    public ResponseEntity<?> putTeam(@PathVariable Long id, @Valid @RequestBody Team updateTeam) {
         try {
             Team team = teamService.updateTeam(id, updateTeam);
             return ResponseEntity.ok(team);
