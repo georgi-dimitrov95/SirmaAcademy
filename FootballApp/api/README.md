@@ -26,8 +26,9 @@ This project is a REST API application for managing football players, teams, mat
 - ### DTOs for each of the mentioned entities
 
 
-## (Work in progress) CRUD operations for entities
+## CRUD operations for entities: 
 - `Player`, `Team`, `Match`
+
 
 ## Reading data from CSV files for each entity
 - Validations with the help of custom classes (e.g. `ScoreValidator`, `StringValidator`, `PlayerValidatorCsv`) for each row from the file depending on which entity it relates to
@@ -59,14 +60,12 @@ This project is a REST API application for managing football players, teams, mat
 - This is needed because there might be more than one `Pair` with the most shared minutes (this is the case with the whole **England** team according to the csv data)
 - Finally, the method `public List<PairDto> pairDTOsWithMostMinutesShared()` transforms the `List<Pair>` into `List<PairDto>` and returns the result
 
-
-
-
-
 ## Technologies used
 - Java 21
 - Maven
 - Spring Boot
+- Spring Web
+- Spring Validation
 - Spring Data JPA
 - PostgresSQL
 - pgAdmin4

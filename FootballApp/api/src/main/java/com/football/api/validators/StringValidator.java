@@ -66,6 +66,4 @@ public class StringValidator {
         String regex = "^(0|1[0-1][0-9]|120|[1-9][0-9]?|NULL)$";
         return minutes.matches(regex);
     }
-
-
 }
