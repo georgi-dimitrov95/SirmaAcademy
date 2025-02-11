@@ -27,7 +27,7 @@ This project is a REST API application for managing football players, teams, mat
 
 
 ## CRUD operations for entities: 
-- `Player`, `Team`, `Match`
+- `Player`, `Team`, `Match`, `Record`
 
 
 ## Reading data from CSV files for each entity
@@ -41,7 +41,7 @@ This project is a REST API application for managing football players, teams, mat
 - pgAdmin4
 
 ## Algorithm for identifying the pair(s) of players that have shared the most minutes together 
-- FIRST PART OF THE ALGORITHM - the method `public List<Pair> getPairsWithSharedMinutes()` in class `SharedMinutesService`
+### First part of the algorithm - the method `public List<Pair> getPairsWithSharedMinutes()` in class `SharedMinutesService`
 - a new empty `List<Pair>` is initialized (this is what will be returned by `getPairsWithSharedMinutes()`
 - The algorithm loads all `Player` entities from the database into a List
 - Then for each `PlayerA` finds (by `playerId`) all `records` in which the player is present and adds them to a list
@@ -54,11 +54,29 @@ This project is a REST API application for managing football players, teams, mat
 - If there is no such `Pair` in the `List<Pair>`, the `Pair` gets added to it
 - At the end `getPairsWithSharedMinutes()` returns the populated `List<Pair>` containing all possible pairs of players that shared minutes together
 <!-- Blank line -->
-- SECOND PART
+### Second part of the algorithm
 - the method `public List<Pair> getPairsWithMostMinutesShared()` in the `SharedMinutesService` class takes the return value of `getPairsWithSharedMinutes()` in class `SharedMinutesService` and finds the most shared minutes among all pairs
 - Then returns a `List<Pair>` containing every `Pair` that has the most shared minutes
 - This is needed because there might be more than one `Pair` with the most shared minutes (this is the case with the whole **England** team according to the csv data)
 - Finally, the method `public List<PairDto> pairDTOsWithMostMinutesShared()` transforms the `List<Pair>` into `List<PairDto>` and returns the result
+### The end result is presented in the following format:
+```json
+{
+    "playerA": "Jordan Pickford",
+    "playerB": "Kyle Walker",
+    "minutesSharedPerMatch": [
+        90,
+        90,
+        90,
+        90,
+        120,
+        90,
+        90
+    ],
+    "totalMinutesShared": 660
+}
+```
+
 
 ## Technologies used
 - Java 21
